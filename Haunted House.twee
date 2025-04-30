@@ -1,0 +1,234 @@
+:: StoryTitle
+Haunted House
+
+
+:: StoryData
+{
+  "ifid": "7C917D27-A870-458D-9682-289B045228E0",
+  "format": "Harlowe",
+  "format-version": "3.3.9",
+  "start": "Beginning",
+  "zoom": 0.6
+}
+
+
+:: Attic {"position":"2100,625","size":"100,100"}
+[[Theater Room]]
+[[Hallway Upstairs]]
+
+
+:: Back Door {"position":"925,975","size":"100,100"}
+You chose to go through the back door. This is your last chance.
+Do you want to go through this door or go home. 
+
+[[Go in the House|Hallway South]]
+[[Go Home|Go Home]]
+
+(set: $Personality to "Sneaky")
+// avoid death by zombie
+(set: $inventory to [])
+(set: $notEnteredLivingRoom to true)
+
+
+:: Basement {"position":"225,900","size":"100,100"}
+
+
+
+[[Nursery|Nursery]]
+[[Return to the Closet|Closet]]
+
+
+
+:: Beginning {"position":"100,25","size":"100,100"}
+You're in front of a spooky old house...
+Do you:
+
+(set:$playerLocation to "Front Yard")
+(set:$monsterLocation to "Basement")
+
+[[Try the front door|Front Door]]
+[[Sneak around back|Back Door]]
+[[Forget it, and go home|Go Home]]
+[[Quit|Confirmation]]
+
+
+:: Breakfast Dining {"position":"725,775","size":"100,100"}
+[[Kitchen|Kitchen]]
+[[Hallway South|Hallway South]]
+
+
+:: Central Area {"position":"925,600","size":"100,100"}
+[[Hallway East|Hallway East]]
+[[Hallway North|Hallway North]]
+[[Hallway South|Hallway South]]
+
+
+:: Closet {"position":"1225,450","size":"100,100"}
+You look in to the closet and see an endless amount of stairs.
+
+Do you want to go back or do you want to go down the stairs
+
+[[Hallway East|Hallway East]]
+[[Go Down the Stairs|Basement]]
+
+
+:: Confirmation {"position":"200,200","size":"100,100"}
+Are you sure you want to quit the game?
+
+ [[Yes|Quit]]
+ [[No|Beginning]]
+
+
+:: Death Room {"position":"1125,900","size":"100,100"}
+
+
+
+:: Dining Room {"position":"725,475","size":"100,100"}
+[[Kitchen|Kitchen]]
+[[Hallway North|Hallway North]]
+
+
+:: Front Door {"position":"925,150","size":"100,100"}
+You chose to go through the front door. This is your last chance.
+Do you want to go through this door or go home. 
+
+[[Go in the House|Hallway North]]
+[[Go Home|Go Home]]
+
+(set: $Personality to "Brave")
+//avoid death by ghosts
+(set: $inventory to [])
+(set: $notEnteredLivingRoom to true)
+
+
+:: Go Home {"position":"100,400","size":"100,100"}
+(set: $Personality to "Trickster")
+//avoid death by vampires
+(set: $inventory to [])
+
+You chose to run away. As you try and run away the gates slam and close before you can get to them. You now realize your predicament, you are stranded in the haunted house's courtyard.
+
+
+:: Guest Bathroom {"position":"1425,550","size":"100,100"}
+[[Hallway East|Hallway East]]
+
+
+:: Guest Bedroom {"position":"1325,800","size":"100,100"}
+[[Hallway East|Hallway East]]
+
+
+:: Hallway East {"position":"1200,600","size":"100,100"}
+[[Central Area|Central Area]]
+[[Guest Bedroom|Guest Bedroom]]
+[[Guest Bathroom|Guest Bathroom]]
+[[Closet|Closet]]
+
+
+:: Hallway North {"position":"925,375","size":"100,100"}
+[[Dining Room|Dining Room]]
+[[Stairs|Stairs]]
+[[Central Area|Central Area]]
+
+
+:: Hallway South {"position":"925,775","size":"100,100"}
+[[Living Room|Living Room]]
+[[Breakfast Dining|Breakfast Dining]]
+[[Central Area|Central Area]]
+
+
+:: Hallway Upstairs {"position":"1750,250","size":"100,200"}
+[[Master Bedroom]]
+[[Kids Room]]
+[[Study Room]]
+[[Attic]]
+[[Stairs|Stairs]]
+
+
+:: Kids Bathroom {"position":"2075,175","size":"100,100"}
+[[Kids Room]]
+
+
+:: Kids Room {"position":"2075,300","size":"100,100"}
+[[Kids Bathroom]]
+[[Mirror Room]]
+[[Hallway Upstairs]]
+
+
+:: Kitchen {"position":"625,625","size":"100,100"}
+[[Pantry|Pantry]]
+[[Dining Room|Dining Room]]
+[[Breakfast Dining|Breakfast Dining]]
+
+
+:: Living Room {"position":"1125,775","size":"100,100"}
+[[Hallway South|Hallway South]]
+
+(if: $notEnteredLivingRoom)[
+    You are attacked by a zombie in the living room.
+
+](else:)[
+    You already entered here. 
+]
+
+(set: $notEnteredLivingRoom to false)
+
+
+:: Master Bathroom {"position":"1875,75","size":"100,100"}
+[[Master Bedroom]]
+
+
+:: Master Bedroom {"position":"1750,75","size":"100,100"}
+[[Portrait Gallery]]
+[[Master Bathroom]]
+[[Hallway Upstairs]]
+
+
+:: Mirror Room {"position":"2075,425","size":"100,100"}
+You enter a room full of mirrors. A couple feet ahead of you stands a tall and bloodthristy vampire whos reflection is absent.
+
+
+[[Kids Room]]
+
+
+:: Nursery {"position":"225,1125","size":"100,100"}
+
+
+
+[[Go back|Basement]]
+
+
+:: Pantry {"position":"425,625","size":"100,100"}
+[[Kitchen|Kitchen]]
+
+
+:: Portrait Gallery {"position":"1625,75","size":"100,100"}
+[[Master Bedroom]]
+
+
+:: Quit {"position":"25,200","size":"100,100"}
+You have quit the game
+
+
+:: Stairs {"position":"1475,275","size":"100,100"}
+Do you want to climb the stairs or go back?
+
+[[Upstairs|Hallway Upstairs]]
+[[Go back|Hallway North]]
+
+
+:: Study Closet {"position":"1675,650","size":"100,100"}
+[[Study Room]]
+
+
+:: Study Room {"position":"1750,525","size":"100,100"}
+[[Study Closet]]
+[[The Archives]]
+[[Hallway Upstairs]]
+
+
+:: The Archives {"position":"1825,650","size":"100,100"}
+[[Study Room]]
+
+
+:: Theater Room {"position":"2275,625","size":"100,100"}
+[[Attic]]
