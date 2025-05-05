@@ -1,0 +1,606 @@
+:: StoryTitle
+Haunted House
+
+
+:: StoryData
+{
+  "ifid": "7C917D27-A870-458D-9682-289B045228E0",
+  "format": "Harlowe",
+  "format-version": "3.3.9",
+  "start": "Beginning",
+  "zoom": 0.6
+}
+
+
+:: Attic {"position":"2025,625","size":"100,100"}
+(set: $playerLocation to "Attic")
+(set: $monsterLocation to (either: 
+  "Theater Room", "Mirror Room", "Portrait Gallery"))
+
+(if: $monsterLocation is $playerLocation)[
+	You open the attic door, and as you step in, the vampire is waiting for you, its claws outstretched!
+	* 
+](else:)[
+	The attic is dark and full of cobwebs, but you can hear something moving around up there. What will you do?
+
+	* [[Theater Room]]
+   	* [[Seance Room]]
+	* [[Hallway Upstairs]]
+]
+
+
+:: Back Door {"position":"925,1000","size":"100,100"}
+(if: $Personality is "Trickster")[
+	(set: $Personality to "Trickster")
+] (else:) [
+	(set: $Personality to "Sneaky")
+]
+(set: $inventory to (a:))
+
+You chose to go through the back door. This is your last chance.
+Do you want to go through this door or go home. 
+
+[[Go in the House|Hallway South]]
+[[Go Home|Go Home]]
+
+
+:: Basement {"position":"275,975","size":"100,100"}
+(set: $playerLocation to "Basement")
+(set: $monsterLocation to (either: 
+  "Basement", "Closet", "Nursery", "Kitchen", 
+  "Living Room", "Hallway South", "Pantry"))
+
+(if: $monsterLocation is $playerLocation)[
+	Suddenly, a low snarl echoes from the shadows. The Zombie has found you!
+	* [[]]
+](else:)[
+	You are in the dark, creepy Basement.
+
+	What would you like to do?
+	* [[Nursery]]
+	* [[Return to the Closet|Closet]]
+    	[[Basement Stairs]]
+]
+
+
+:: Basement Stairs {"position":"100,975","size":"100,100"}
+(set: $playerLocation to "Basement Stairs")
+
+(if: $monsterLocation is $playerLocation)[
+	You open the closet door and find the Ghost hiding inside! It attacks!
+	* [[]]
+](else:)[
+		You walk up the stairs and see a cellar door with a bronze lock.
+    	[[Basement]]
+    	(if: $inventory contains "CellarKey")[
+        You put your key in the lock and unlock the door. It leads you outside!
+        	[[Basement]]
+    * [[Go to Courtyard|Courtyard]]
+    	]
+]
+
+
+:: Beginning {"position":"100,25","size":"100,100"}
+\:: Start
+You're in front of a spooky old house...
+Do you:
+[[Try the front door|Front Door]]
+[[Sneak around back|Back Door]]
+[[Forget it, and go home|Go Home]]
+[[Quit|Confirmation]]
+(set: $playerLocation to "Front Yard")
+
+
+:: Breakfast Dining {"position":"725,775","size":"100,100"}
+(set: $playerLocation to "Breakfast Dining")
+(set: $monsterLocation to (either: "Pantry", "Guest Bedroom"))
+
+(if: $monsterLocation is $playerLocation)[
+	A monstrous shriek cuts through the quiet. The Ghost is here!
+	* [[]]
+](else:)[
+	The breakfast room feels eerily cheerful. Sunlight beams through cracked blinds, illuminating the dust.
+
+	Where do you go?
+	* [[Kitchen]]
+	* [[Hallway South]]
+]
+
+
+:: Bronze Key {"position":"2125,925","size":"100,100"}
+(set: $inventory to it + (array: "CellarKey"))
+
+You picked up the key!
+
+[[Seance Room]]
+
+
+:: Central Area {"position":"925,600","size":"100,100"}
+(set: $playerLocation to "Central Area")
+(set: $monsterLocation to (either: "Basement", "Guest Bedroom"))
+
+(if: $monsterLocation is $playerLocation)[
+	You hear a chilling growl behind you—too late. The Ghost is here!
+	* [[]]
+](else:)[
+	The Central Area feels like the heart of the house. Every hallway leads somewhere worse.
+
+	Where do you go?
+	* [[Hallway East]]
+	* [[Hallway North]]
+	* [[Hallway South]]
+]
+
+
+:: Closet {"position":"1200,450","size":"100,100"}
+(set: $playerLocation to "Closet")
+(set: $monsterLocation to (either: "Pantry", "Guest Bedroom"))
+
+(if: $monsterLocation is $playerLocation)[
+	You open the closet door and find the Ghost hiding inside! It attacks!
+	* [[]]
+](else:)[
+		You step into the closet, and see a locked door with a silver knob.
+    	[[Hallway East]]
+    	(if: $inventory contains "BasementKey")[
+        You put you key in the lock and unlock a door, it has an endless set of stairs behind it.
+        Where will you go next?
+	* [[Hallway East]]
+    * [[Go down the stairs|Basement]]
+    	]
+]
+
+
+:: Confirmation {"position":"200,200","size":"100,100"}
+Are you sure you want to quit the game?
+
+ [[Yes|Quit]]
+ [[No|Beginning]]
+
+
+:: Courtyard {"position":"100,800","size":"100,100"}
+You rush to the gate and see a golden lock on the door of the gate.
+(if: $inventory contains "GateKey")[
+You put your key in the lock and unlock the door. 
+[[Gate Door]]
+]
+
+
+:: Dining Room {"position":"725,475","size":"100,100"}
+(set: $playerLocation to "Dining Room")
+(set: $monsterLocation to (either: "Pantry", "Guest Bedroom"))
+
+(if: $monsterLocation is $playerLocation)[
+	A shadowy figure lunges from beneath the dining table... The Ghost is here!
+	* [[]]
+](else:)[
+	You're in the Dining Room. Dusty plates are still set on the table, like the owners vanished mid-meal.
+
+	Where do you go?
+	* [[Kitchen]]
+	* [[Hallway North]]
+]
+
+
+:: Front Door {"position":"925,150","size":"100,100"}
+(if: $Personality is "Trickster")[
+	(set: $Personality to "Trickster")
+] (else:) [
+	(set: $Personality to "Brave")
+]
+
+(set: $inventory to (a:))
+
+\:: Front Door
+You're at the front door of the spooky old house...
+
+You chose to go through the front door. This is your last chance.
+Do you want to go through this door or go home?
+[[Enter the house|Hallway North]]
+[[Go back outside|Go Home]]
+
+
+:: Gate Door {"position":"100,650","size":"100,100"}
+You have finally escaped the mansion!
+
+
+:: Ghost Death {"position":"1125,25","size":"100,100"}
+The ghost scared you to death...
+
+[[Restart|Beginning]]
+
+
+:: Go Home {"position":"100,400","size":"100,100"}
+(set: $Personality to "Trickster")
+(set: $inventory to (a:))
+
+You chose to run away. As you try and run away the gates slam and close before you can get to them. You now realize your predicament, you are stranded in the haunted house's courtyard and now are forced to enter the house anyway. Which door will you take.
+
+[[Front Door]]
+[[Back Door]]
+
+
+:: Guest Bathroom {"position":"1425,550","size":"100,100"}
+(set: $playerLocation to "Guest Bathroom")
+(set: $monsterLocation to (either: "Pantry", "Guest Bedroom"))
+
+(if: $monsterLocation is $playerLocation)[
+	You hear the sound of something dragging across the floor, and the hairs on your neck stand up. The Ghost is close!
+	* [[]]
+](else:)[
+	The bathroom is small, but clean. The mirror reflects a pale version of yourself.
+
+	What will you do next?
+	* [[Hallway East]]
+	* [[Guest Bedroom]]
+]
+
+
+:: Guest Bedroom {"position":"1325,800","size":"100,100"}
+(set: $playerLocation to "Guest Bedroom")
+(set: $monsterLocation to (either: "Pantry", "Guest Bedroom"))
+
+(if: $monsterLocation is $playerLocation)[
+	 There is a ghost lurking nearby...
+    (if: $Personality is "Brave")[
+    	You successfully avoided the ghost.
+    ] (else:) [
+    	(goto: "Ghost Death")
+    ]
+](else:)[
+	The room is quiet, with nothing but the soft creak of the old house settling. You feel safe for now.
+
+	Where would you like to go next?
+	* [[Hallway East]]
+	* [[Guest Bathroom]]
+]
+
+
+:: Hallway East {"position":"1200,600","size":"100,100"}
+(set: $playerLocation to "Hallway East")
+(set: $monsterLocation to (either: "Pantry", "Guest Bedroom"))
+
+(if: $monsterLocation is $playerLocation)[
+	You hear something moving in the shadows of the hallway. The Ghost is right behind you!
+	* [[]]
+](else:)[
+	The hallway seems eerily quiet. You look around, but there’s no sign of the monster.
+
+	Where would you like to go next?
+*[[Central Area|Central Area]]
+*[[Guest Bedroom|Guest Bedroom]]
+*[[Guest Bathroom|Guest Bathroom]]
+*[[Closet|Closet]]
+]
+
+
+:: Hallway North {"position":"925,400","size":"100,100"}
+\:: Start
+You're standing in the eerie North Hall of the house. It's cold, and the air feels heavy...
+
+(set: $playerLocation to "Hallway North")
+(set: $monsterLocation to (either: "Pantry", "Guest Bedroom"))
+
+(if: $monsterLocation is $playerLocation)[
+    Suddenly, a loud growl echoes from the shadows. The Ghost has found you!
+    * [[]]
+](else:)[
+    Do you:
+    * [[Explore the kitchen|Kitchen]]
+    * [[Go upstairs|Stairs]]
+    * [[Go to the Central Area|Central Area]]
+    
+]
+
+
+:: Hallway South {"position":"925,750","size":"100,100"}
+(set: $playerLocation to "Hallway South")
+(set: $monsterLocation to (either: "Pantry", "Guest Bedroom"))
+
+(if: $monsterLocation is $playerLocation)[
+	Out of nowhere, the Ghost leaps from the shadows! It's too late to escape...
+	* [[]]
+](else:)[
+	You're standing in the South Hallway. The air is thick with tension.
+
+	Where do you go?
+	* [[Living Room]]
+	* [[Breakfast Dining]]
+	* [[Central Area]]
+]
+
+
+:: Hallway Upstairs {"position":"1750,250","size":"100,200"}
+(set: $playerLocation to "Hallway Upstairs")
+(set: $monsterLocation to (either: 
+  "Theater Room", "Mirror Room", "Portrait Gallery"))
+
+(if: $monsterLocation is $playerLocation)[
+	You arrive at the top of the stairs and feel the tension in the air. The vampire is lurking nearby, waiting for you to make a mistake!
+	* [[]]
+](else:)[
+	You are now on the upper floor, with several rooms to explore. Beware the one who walks in shadows, for beneath the pale gaze lies a thirst that never wanes.
+
+
+	Do you want to enter one of the rooms or go back down?
+	* [[Master Bedroom]]
+	* [[Kids Room]]
+	* [[Study Room]]
+	* [[Attic]]
+	* [[Stairs]]
+]
+
+
+:: Kids Bathroom {"position":"2075,175","size":"100,100"}
+(set: $playerLocation to "Kids Bathroom")
+(set: $monsterLocation to (either: 
+  "Theater Room", "Mirror Room", "Portrait Gallery"))
+
+(if: $monsterLocation is $playerLocation)[
+	You enter the kids bathroom, and a chill runs down your spine. The monster lurks nearby, waiting for the perfect moment to strike.
+	* [[]]
+](else:)[
+	You stand in the kids bathroom, the walls are decorated with cartoonish murals. What will you do next?
+
+	* [[Kids Room]]
+]
+
+
+:: Kids Room {"position":"2075,300","size":"100,100"}
+(set: $playerLocation to "Kids Room")
+(set: $monsterLocation to (either: 
+  "Theater Room", "Mirror Room", "Portrait Gallery"))
+
+(if: $monsterLocation is $playerLocation)[
+	You walk into the kids room and feel an eerie presence. The Vampire is here, lurking in the shadows, ready to attack!
+	* [[]]
+](else:)[
+	The kids room is brightly colored, with toys scattered around. What will you do next?
+
+	* [[Kids Bathroom]]
+	* [[Mirror Room]]
+    * [[Leave|Hallway Upstairs]]
+]
+
+
+:: Kitchen {"position":"625,625","size":"100,100"}
+(set: $playerLocation to "Kitchen")
+(set: $monsterLocation to (either: "Pantry", "Guest Bedroom"))
+
+(if: $monsterLocation is $playerLocation)[
+	Suddenly, a loud growl echoes from the shadows. The Ghost has found you!  
+	* [[]]
+](else:)[
+	You are in the Kitchen.
+
+	What would you like to do?
+	* [[Pantry]]
+	* [[Dining Room]]
+	* [[Breakfast Dining]]
+]
+
+
+:: Living Room {"position":"1125,775","size":"100,100"}
+(set: $playerLocation to "Living Room")
+(set: $monsterLocation to (either: "Pantry", "Guest Bedroom"))
+
+(if: $monsterLocation is $playerLocation)[
+	You enter the living room, but the Ghost is already here! It lunges at you!
+	* [[]]
+](else:)[
+	You step into the living room. It’s eerily quiet, and the furniture is covered in dusty sheets.
+
+	Where will you go next?
+	* [[Hallway South]]
+]
+
+
+:: Master Bathroom {"position":"1875,75","size":"100,100"}
+(set: $playerLocation to "Master Bathroom")
+(set: $monsterLocation to (either: 
+  "Theater Room", "Mirror Room", "Portrait Gallery"))
+
+(if: $monsterLocation is $playerLocation)[
+	You step into the Master Bathroom, the door creaks behind you, and you feel a chill as the Vampire lurks nearby!
+	* [[]]
+](else:)[
+	The bathroom is spacious with a luxurious marble tub and sleek mirrors. A faint smell of something foul lingers in the air.
+
+	Do you want to leave or explore more rooms?
+	* [[Master Bedroom]]
+
+]
+
+
+:: Master Bedroom {"position":"1750,75","size":"100,100"}
+(set: $playerLocation to "Master Bedroom")
+(set: $monsterLocation to (either: 
+  "Theater Room", "Mirror Room", "Portrait Gallery"))
+
+(if: $monsterLocation is $playerLocation)[
+	You enter the Master Bedroom, and the air grows cold. Suddenly, you hear footsteps behind you—the Vampire has found you!
+	* [[]]
+](else:)[
+	The room is large and furnished with luxurious antique furniture. A large bed dominates the center of the room, and a chilling portrait hangs above the fireplace.
+
+	Do you want to explore further or go to another room?
+	* [[Portrait Gallery]]
+	* [[Master Bathroom]]
+   	* [[Leave|Hallway Upstairs]]
+]
+
+
+:: Mirror Room {"position":"2075,425","size":"100,100"}
+(set: $playerLocation to "Mirror Room")
+(set: $monsterLocation to (either: 
+  "Theater Room", "Mirror Room", "Portrait Gallery"))
+
+(if: $monsterLocation is $playerLocation)[
+	You enter the mirror room and your reflection seems to move on its own! Suddenly, the Vampire appears in the mirrors and lunges at you!
+	* 
+](else:)[
+	The room is full of mirrors, and you're surrounded by your own reflections. What will you do next?
+
+	* [[Kids Room]]
+]
+
+
+:: Nursery {"position":"450,975","size":"100,100"}
+(set: $playerLocation to "Nursery")
+
+[[Basement]]
+
+
+
+:: Pantry {"position":"425,625","size":"100,100"}
+(set: $playerLocation to "Pantry")
+(set: $monsterLocation to (either: "Pantry", "Guest Bedroom"))
+
+(if: $monsterLocation is $playerLocation)[
+	A chilling growl rumbles behind the shelves... The Ghost is here!
+    (if: $Personality is "Brave")[
+    	You successfully avoided the ghost
+    ] (else:) [
+    	(goto: "Ghost Death")
+    ]
+](else:)[
+	You're in the Pantry. It's cramped and smells like something expired decades ago.
+
+	Where do you go?
+	* [[Kitchen]]
+]
+
+
+:: Portrait Gallery {"position":"1625,75","size":"100,100"}
+[[Master Bedroom]]
+(set: $playerLocation to "Portrait Gallery")
+(set: $monsterLocation to (either: 
+  "Theater Room", "Mirror Room", "Portrait Gallery"))
+
+(if: $monsterLocation is $playerLocation)[
+	You enter the Portrait Gallery, where the eyes of every painting seem to follow you. Suddenly, you hear breathing from behind the frames—the Vampire has found you!
+	* [[]]
+](else:)[
+	The gallery is filled with old portraits, each more eerie than the last. You feel like you're being watched.
+
+	Do you want to continue exploring or head to another room?
+	* [[Master Bedroom]]
+]
+
+
+:: Quit {"position":"25,200","size":"100,100"}
+You have quit the game
+
+
+:: Seance Room {"position":"2125,775","size":"100,100"}
+(set: $playerLocation to "Seance Room")
+(set: $monsterLocation to (either: 
+  "Theater Room", "Mirror Room", "Portrait Gallery"))
+
+(if: $monsterLocation is $playerLocation)[
+	You open the attic door, and as you step in, the vampire is waiting for you, its claws outstretched!
+	* 
+](else-if: $inventory contains "CellarKey")[
+	You walk into the archives, the scent of old paper filling the air. The shelves seem to go on forever.
+	[[Attic]]
+    [[Theater Room]]
+](else:)[
+	You walk into the archives, the scent of old paper filling the air. The shelves seem to go on forever. 
+	You see a key on the ground. A force compels you to pick up the Bronze key.
+	[[Pick it Up|Bronze Key]]
+]
+
+
+:: Silver Key {"position":"1825,800","size":"100,100"}
+(set: $inventory to it + (array: "BasementKey"))
+
+You picked up the key!
+
+[[The Archives]]
+
+
+:: Stairs {"position":"1225,300","size":"100,100"}
+(set: $playerLocation to "Stairs")
+(set: $monsterLocation to (either: 
+  "Theater Room", "Mirror Room", "Master Bedroom"))
+
+(if: $monsterLocation is $playerLocation)[
+	You hear a creaking sound, and the shadows seem to move in your peripheral vision. The monster is stalking you on the stairs!
+	* [[]]
+](else:)[
+	The stairs are narrow and steep, leading up to a darker area. You feel a sense of foreboding.
+
+	Do you want to go up or head back?
+	* [[Hallway Upstairs]]
+	* [[Hallway North]]
+]
+
+
+:: Study Closet {"position":"1675,650","size":"100,100"}
+(set: $playerLocation to "Study Closet")
+(set: $monsterLocation to (either: 
+  "Theater Room", "Mirror Room", "Portrait Gallery"))
+
+(if: $monsterLocation is $playerLocation)[
+	You open the closet door, only to be met by a cold, monstrous presence lurking inside. It was waiting for you.
+	* [[]]
+](else:)[
+	You step into the study closet, filled with old coats and storage boxes. A faint smell of mildew hangs in the air. It’s eerily quiet.
+
+	What will you do next?
+	* [[Study Room]]
+]
+
+
+:: Study Room {"position":"1750,500","size":"100,100"}
+(set: $playerLocation to "Study Room")
+(set: $monsterLocation to (either: 
+  "Theater Room", "Mirror Room", "Portrait Gallery"))
+
+(if: $monsterLocation is $playerLocation)[
+	You enter the study, and suddenly, you feel the temperature drop. The vampire is here, waiting in the shadows!
+	* [[]]
+](else:)[
+	You step into the study room, filled with dusty books and old furniture. It's quiet, almost too quiet. You feel like you’re being watched.]
+    
+		What will you do next?
+	* [[Study Closet]]
+	* [[The Archives]]
+	* [[Hallway Upstairs]]
+
+
+:: The Archives {"position":"1825,650","size":"100,100"}
+(set: $playerLocation to "The Archives")
+(set: $monsterLocation to (either: 
+  "Theater Room", "Mirror Room", "Portrait Gallery")))
+
+(if: $monsterLocation is $playerLocation)[
+	You step into the dimly lit archives and are immediately surrounded by stacks of dusty old books. 
+	The vampire, hidden in the shadows, pounces on you.
+]
+(else-if: $inventory contains "BasementKey")[
+	You walk into the archives, the scent of old paper filling the air. The shelves seem to go on forever.
+	[[Study Room]]
+]
+(else:)[
+	You walk into the archives, the scent of old paper filling the air. The shelves seem to go on forever. 
+	You see a key on the ground. A force compels you to pick up the Silver key.
+	[[Pick it Up|Silver Key]]
+]
+
+
+:: Theater Room {"position":"2200,625","size":"100,100"}
+[[Attic]]
+(set: $playerLocation to "Theater Room")
+(set: $monsterLocation to (either: 
+  "Theater Room", "Mirror Room", "Portrait Gallery"))
+
+(if: $monsterLocation is $playerLocation)[
+	You step into the Theater Room, and the vampire is already there, lurking in the shadows!
+	* 
+](else:)[
+	The Theater Room looks eerie, with a giant screen and old movie posters. What will you do?
+
+	* [[Attic]]
+    	[[Seance Room]]
+]
