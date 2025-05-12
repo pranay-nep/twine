@@ -82,8 +82,6 @@ Do you want to go through this door or go home.
         After unlocking the door, it leads you outside!
     * [[Go to Courtyard|Courtyard]]
     	]
-        
-
 
 
 :: Beginning {"position":"100,25","size":"100,100"}
@@ -95,7 +93,7 @@ Do you:
 * [[Quit|Confirmation]]
 (set: $playerLocation to "Front Yard")
 
-<img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/f5695929-2f39-4e65-80ca-4ad702cd867c/dhuaugh-472b8d03-821e-4918-abfc-20c1da5a4063.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2Y1Njk1OTI5LTJmMzktNGU2NS04MGNhLTRhZDcwMmNkODY3Y1wvZGh1YXVnaC00NzJiOGQwMy04MjFlLTQ5MTgtYWJmYy0yMGMxZGE1YTQwNjMuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.kO0_5kGDcx_mFDHut0RnFvecfMxTfiT_TfHAt14i93Y" />
+<img src="https://img.freepik.com/premium-photo/haunted-house-enveloped-dark-horror_756535-1397.jpg" />
 
 
 :: Breakfast Dining {"position":"725,775","size":"100,100"}
@@ -117,7 +115,12 @@ Do you:
 :: Bronze Key {"position":"2125,925","size":"100,100"}
 (set: $inventory to it + (array: "CellarKey"))
 
+(link: "Pick up key")[
+    <audio autoplay>
+        <source src="https://github.com/Nicky18C/Sounds/raw/refs/heads/main/Collect%20Item%20Sound%20Effect.mp3" type="audio/mpeg">
+    </audio>
 You picked up the key!
+]
 
 * [[Seance Room]]
 
@@ -196,7 +199,6 @@ You wonder why you can't just hop over the fence. Upset over our game logic, you
 ]
 
 
-
 :: Dining Room {"position":"725,475","size":"100,100"}
 (set: $playerLocation to "Dining Room")
 (set: $monsterLocation to (either: "Pantry", "Guest Bedroom"))
@@ -231,7 +233,6 @@ You wonder why you can't just hop over the fence. Upset over our game logic, you
 ]
 
 
-
 :: Front Door {"position":"925,150","size":"100,100"}
 (if: $Personality is "Trickster")[
 	(set: $Personality to "Trickster")
@@ -245,7 +246,8 @@ You chose to go through the front door. This is your last chance.
 Do you want to go through this door or go home?
 * [[Enter the house|Hallway North]]
 * [[Go back outside|Go Home]]
-<img src="https://cdn.promptden.com/images/f526bb43-59b4-491b-8889-967eb2c32437.jpg" />
+
+
 
 
 :: Gate Door {"position":"100,650","size":"100,100"}
@@ -254,10 +256,11 @@ You have finally escaped the mansion!
 
 :: Ghost Death {"position":"1100,0","size":"100,100"}
 The ghost scared you to death...
-
 * [[Restart|Beginning]]
+<img 
+src="https://i.pinimg.com/1200x/89/3c/bc/893cbc25aaa02410eb3880fe925af2b0.jpg" />
 
-<img src="https://cameraviscera.com/wp-content/uploads/2016/02/grave-encounters-2.jpg?w=601&h=390" />
+
 
 
 :: Go Home {"position":"100,400","size":"100,100"}
@@ -273,7 +276,12 @@ You chose to run away. As you try and run away the gates slam and close before y
 :: Gold Key {"position":"275,1500","size":"100,100"}
 (set: $inventory to it + (array: "GateKey"))
 
+(link: "Pick up key")[
+    <audio autoplay>
+        <source src="https://github.com/Nicky18C/Sounds/raw/refs/heads/main/Collect%20Item%20Sound%20Effect.mp3" type="audio/mpeg">
+    </audio>
 You picked up the key!
+]
 
 * [[Return to Storage Room|Storage Room]]
 
@@ -348,6 +356,7 @@ You're standing in the eerie North Hall of the house. It's cold, and the air fee
     * [[Go to Central Area|Central Area]]
     
 ]
+
 
 
 :: Hallway South {"position":"925,750","size":"100,100"}
@@ -535,8 +544,7 @@ You're standing in the eerie North Hall of the house. It's cold, and the air fee
 ]
 
 
-:: Portrait Gallery {"position":"1625,75","size":"100,100"}
-[[Master Bedroom]]
+:: Portrait Gallery {"position":"1650,75","size":"100,100"}
 (set: $playerLocation to "Portrait Gallery")
 (set: $monsterLocation to (either: 
   "Theater Room", "Mirror Room", "Portrait Gallery"))
@@ -591,9 +599,23 @@ You have quit the game
 :: Silver Key {"position":"1825,800","size":"100,100"}
 (set: $inventory to it + (array: "BasementKey"))
 
+(link: "Pick up key")[
+    <audio autoplay>
+        <source src="https://github.com/Nicky18C/Sounds/raw/refs/heads/main/Collect%20Item%20Sound%20Effect.mp3" type="audio/mpeg">
+    </audio>
 You picked up the key!
+]
 
 * [[The Archives]]
+
+
+
+
+
+
+
+
+
 
 
 :: Stairs {"position":"1225,300","size":"100,100"}
@@ -682,6 +704,7 @@ You step into the study room, filled with dusty books and old furniture. It's qu
 (else:)[
 	You walk into the archives, the scent of old paper filling the air. The shelves seem to go on forever. You see a key hanging on the wall. A force compels you to pick up the Silver key.
 	* [[Pick it Up|Silver Key]]
+    
 ]
 
 
@@ -721,7 +744,7 @@ The vampire sinks its pearly, razor sharp teeth into your neck, quenching its hu
 
 * [[Restart|Beginning]]
 
-//add image
+<img src="https://cdn.mos.cms.futurecdn.net/5wtDSDqhVpu2b77sycJ2bC-1200-80.jpg" />
 
 
 :: Zombie Death {"position":"1275,0","size":"100,100"}
@@ -729,4 +752,5 @@ The zombie bites off your arm in a single motion...
 
 * [[Restart|Beginning]]
 
-//add image
+
+<img src="https://marvel-b1-cdn.bc0a.com/f00000000299671/www.columbuszoo.org/sites/default/files/inline-images/Zombiezi%20Bay%2005476%20-%20Amanda%20Carberry%2C%20Columbus%20Zoo%20and%20Aquarium.jpg" />
