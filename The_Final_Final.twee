@@ -118,7 +118,7 @@ Do you:
 
 (link: "Pick up key")[
     <audio autoplay>
-        <source src="https://github.com/Nicky18C/Sounds/raw/refs/heads/main/Collect%20Item%20Sound%20Effect.mp3" type="audio/mpeg">
+        <source src="https://github.com/pranay-nep/twine/raw/refs/heads/main/Zelda%20Receive%20Item%20-%20Sound%20Effect%20for%20editing.mp3" type="audio/mpeg">
     </audio>
 You picked up the key!
 ]
@@ -163,9 +163,7 @@ You picked up the key!
     	]
         
 
- 
- <img src="https://www.closetworksinc.com/wp-content/uploads/2021/10/Halloween-Image_wp.webp
-" />
+
 
 
 :: Confirmation {"position":"200,200","size":"100,100"}
@@ -295,7 +293,7 @@ You chose to run away. As you try and run away the gates slam and close before y
 
 (link: "Pick up key")[
     <audio autoplay>
-        <source src="https://github.com/Nicky18C/Sounds/raw/refs/heads/main/Collect%20Item%20Sound%20Effect.mp3" type="audio/mpeg">
+        <source src="https://github.com/pranay-nep/twine/raw/refs/heads/main/Zelda%20Receive%20Item%20-%20Sound%20Effect%20for%20editing.mp3" type="audio/mpeg">
     </audio>
 You picked up the key!
 ]
@@ -658,7 +656,7 @@ You have quit the game
 
 (link: "Pick up key")[
     <audio autoplay>
-        <source src="https://github.com/Nicky18C/Sounds/raw/refs/heads/main/Collect%20Item%20Sound%20Effect.mp3" type="audio/mpeg">
+        <source src="https://github.com/pranay-nep/twine/raw/refs/heads/main/Zelda%20Receive%20Item%20-%20Sound%20Effect%20for%20editing.mp3" type="audio/mpeg">
     </audio>
 You picked up the key!
 ]
