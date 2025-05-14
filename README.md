@@ -33,9 +33,9 @@ This project was built collaboratively by our team as part of a creative coding 
 
 This project was created by:
 
-- [Pranay N.]
-- [Chazidy W.]
-- [Isaiah M.]
+- [Pranay N.](https://github.com/pranay-nep)
+- [Chazidy W.](https://github.com/Nicky18C)
+- [Isaiah M.](https://github.com/zayzigzagzz)
 
 ## ✅ Features
 
