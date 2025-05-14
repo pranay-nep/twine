@@ -1,10 +1,3 @@
-# twine
-twine
-
-Goals:
-  -Work on basement
-  -Add pictures & music
-  -
 # 🏚️ Haunted House (Twine Game)
 
 Welcome to **Haunted House**, a spooky interactive fiction game developed using **Twine**. Enter if you dare—this eerie text-based adventure is filled with puzzles, mystery, and branching choices that test your wits and courage.
