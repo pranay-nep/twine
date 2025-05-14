@@ -1,0 +1,750 @@
+:: StoryTitle
+Haunted House
+
+
+:: StoryData
+{
+  "ifid": "7C917D27-A870-458D-9682-289B045228E0",
+  "format": "Harlowe",
+  "format-version": "3.3.9",
+  "start": "Beginning",
+  "zoom": 0.6
+}
+
+
+:: Attic {"position":"2025,625","size":"100,100"}
+(set: $playerLocation to "Attic")
+(set: $monsterLocation to (either: 
+  "Theater Room", "Mirror Room", "Portrait Gallery"))
+
+(if: $monsterLocation is $playerLocation)[
+	You open the attic door, and as you step in, the vampire is waiting for you, its claws outstretched!
+	* [[Try and run|Pre-Vampire Death]]
+](else:)[
+	The attic is dark and full of cobwebs, but you can hear something moving around up there. The air is full of a// metallic odor//. What will you do?
+
+	* [[Theater Room]]
+   	* [[Seance Room]]
+	* [[Leave|Hallway Upstairs]]
+]
+
+
+:: Back Door {"position":"925,1000","size":"100,100"}
+(if: $Personality is "Trickster")[
+	(set: $Personality to "Trickster")
+] (else:) [
+	(set: $Personality to "Sneaky")
+]
+(set: $inventory to (a:))
+
+You chose to go through the back door. This is your last chance.
+Do you want to go through this door or go home. 
+
+* [[Go in the House|Hallway South]]
+* [[Go Home|Go Home]]
+
+
+:: Basement {"position":"275,975","size":"100,100"}
+(set: $playerLocation to "Basement")
+ 
+(if: $monsterLocation is $playerLocation)[
+	Suddenly, a low snarl echoes from the shadows. The Zombie has found you!
+	* [[Fight back|Pre-Zombie Death]]
+](else:)[
+	You are in the dark and moldy basement. There's nothing to be heard except for barely audible moans of agony accompanied by the smell of what seems to be rotting flesh.
+
+	What would you like to do?
+	* [[Nursery]]
+	* [[Storage Room]]
+    	* [[Basement Stairs]]
+        	* [[Return to the Closet|Closet]]
+
+]
+
+
+:: Basement Stairs {"position":"100,975","size":"100,100"}
+(set: $playerLocation to "Basement Stairs")
+
+(if: $monsterLocation is $playerLocation)[
+	You open the door and the Zombie lunges at you!
+	* [[Fight back|Pre-Zombie Death]]
+](elseif: not($inventory contains "CellarKey"))[
+		You walk up the stairs and see a cellar door with a ''bronze'' lock.
+    	* [[Return to Basement|Basement]]
+        ]
+    	(if: $inventory contains "CellarKey")[
+        After unlocking the door, it leads you outside!
+    * [[Go to Courtyard|Courtyard]]
+    	]
+
+
+:: Beginning {"position":"100,25","size":"100,100"}
+You're in front of a spooky old house...
+Do you:
+* [[Try the front door|Front Door]]
+* [[Sneak around back|Back Door]]
+* [[Forget it, and go home|Go Home]]
+* [[Quit|Confirmation]]
+(set: $playerLocation to "Front Yard")
+
+<img src="https://img.freepik.com/premium-photo/haunted-house-enveloped-dark-horror_756535-1397.jpg" />
+
+
+:: Breakfast Dining {"position":"725,775","size":"100,100"}
+(set: $playerLocation to "Breakfast Dining")
+(set: $monsterLocation to (either: "Pantry", "Guest Bedroom"))
+
+(if: $monsterLocation is $playerLocation)[
+	A monstrous shriek cuts through the quiet. The Ghost is here!
+	* [[Say your prayers|Pre-Ghost Death]]
+](else:)[
+	The breakfast room feels eerily cheerful. Sunlight beams through cracked blinds, illuminating the dust.
+
+	Where do you go?
+	* [[Kitchen]]
+	* [[Hallway South]]
+]
+
+
+:: Bronze Key {"position":"2125,925","size":"100,100"}
+(set: $inventory to it + (array: "CellarKey"))
+
+(link: "Pick up key")[
+    <audio autoplay>
+        <source src="https://github.com/Nicky18C/Sounds/raw/refs/heads/main/Collect%20Item%20Sound%20Effect.mp3" type="audio/mpeg">
+    </audio>
+You picked up the key!
+]
+
+* [[Seance Room]]
+
+
+:: Central Area {"position":"925,600","size":"100,100"}
+(set: $playerLocation to "Central Area")
+(set: $monsterLocation to (either: "Basement", "Guest Bedroom"))
+
+(if: $monsterLocation is $playerLocation)[
+	You hear a chilling growl behind you—too late. The Ghost is here!
+	* [[Say your prayers|Pre-Ghost Death]]
+](else:)[
+	The Central Area feels like the heart of the house. Every hallway leads somewhere worse.
+
+	Where do you go?
+	* [[Hallway East]]
+	* [[Hallway North]]
+	* [[Hallway South]]
+]
+
+
+:: Closet {"position":"1200,450","size":"100,100"}
+(set: $playerLocation to "Closet")
+(set: $monsterLocation to (either: "Pantry", "Guest Bedroom"))
+
+(if: $monsterLocation is $playerLocation)[
+	You open the closet door and find the Ghost hiding inside! It attacks!
+	* [[Say your prayers|Pre-Ghost Death]]
+](elseif: not($inventory contains "BasementKey"))[
+		You step into the closet, and see a locked door with a ''silver'' knob.
+    	* [[Hallway East]]
+]
+(if: $inventory contains "BasementKey")[
+        After unlocking the door, an endless set of stairs lead you into darkness.
+        
+        Do you enter the basement?
+    * [[Go down the stairs|Basement]]
+          *  [[Hallway|Hallway East]]
+    	]
+
+
+:: Confirmation {"position":"200,200","size":"100,100"}
+Are you sure you want to quit the game?
+
+*  [[Yes|Quit]]
+*  [[No|Beginning]]
+
+
+:: Courtyard {"position":"100,800","size":"100,100"}
+You rush to the gate and see a ''gold'' lock on the door of the gate.
+(if: $inventory contains "GateKey")[
+You put your key in the lock and unlock the door. 
+* [[Gate Door]]
+]
+
+(if: not($inventory contains "GateKey"))[
+You wonder why you can't just hop over the fence. Upset over our game logic, you angrily go back downstairs.
+* [[Go back|Basement Stairs]]
+]
+
+
+:: Creepy Doll {"position":"650,975","size":"100,100"}
+(set: $playerLoaction to "Creepy Doll")
+
+
+
+(if: $monsterLocation is $playerLocation)[
+	Suddenly, a low snarl echoes from the shadows. The Zombie has found you!
+	* [[Fight back|Pre-Zombie Death]]
+](else:)[
+	Despite all your senses telling you not to, you pick up the doll. After a quick inspection, you see something shiny in the doll's mouth.
+    
+	What would you like to do?
+    * [[Grab the object|Doll Bite]]
+ 	* [[Put it down|Nursery]]
+]
+
+
+:: Dining Room {"position":"725,475","size":"100,100"}
+(set: $playerLocation to "Dining Room")
+(set: $monsterLocation to (either: "Pantry", "Guest Bedroom"))
+
+(if: $monsterLocation is $playerLocation)[
+	A shadowy figure lunges from beneath the dining table... The Ghost is here!
+	* [[Say your prayers|Pre-Ghost Death]]
+](else:)[
+	You're in the Dining Room. Dusty plates are still set on the table, like the owners vanished mid-meal.
+
+	Where do you go?
+	* [[Kitchen]]
+	* [[Hallway North]]
+]
+
+
+:: Doll Bite {"position":"650,1125","size":"100,100"}
+(set: $playerLocation to "Doll Bite")
+
+
+
+(if: $monsterLocation is $playerLocation)[
+	Suddenly, a low snarl echoes from the shadows. The Zombie has found you!
+	* [[Fight back|Pre-Zombie Death]]
+](else:)[
+	As you reach your finger into the dolls mouth, tiny, needle-like teeth sink into the soft flesh of your finger. The pain is sharp and electric. Blood wells up instantly. You let out a blood curdling scream as every doll in the room erupts with laughter.
+    
+	You try to go back from where you came. But from the sound of quick shuffling feet, you know it may be too late...
+    
+    * [[Fight for your life|Pre-Zombie Death]]
+    
+
+]
+
+
+:: Front Door {"position":"925,150","size":"100,100"}
+(if: $Personality is "Trickster")[
+	(set: $Personality to "Trickster")
+] (else:) [
+	(set: $Personality to "Brave")
+]
+(set: $inventory to (a:))
+You're at the front door of the spooky old house... You need to find three keys in order to escape.
+
+You chose to go through the front door. This is your last chance.
+Do you want to go through this door or go home?
+* [[Enter the house|Hallway North]]
+* [[Go back outside|Go Home]]
+
+
+:: Gate Door {"position":"100,650","size":"100,100"}
+You have finally escaped the mansion!
+
+
+:: Ghost Death {"position":"1100,0","size":"100,100"}
+The ghost scared you to death...
+* [[Restart|Beginning]]
+<img 
+src="https://i.pinimg.com/1200x/89/3c/bc/893cbc25aaa02410eb3880fe925af2b0.jpg" />
+
+
+:: Go Home {"position":"100,400","size":"100,100"}
+(set: $Personality to "Trickster")
+(set: $inventory to (a:))
+
+You chose to run away. As you try and run away the gates slam and close before you can get to them. You now realize your predicament, you are stranded in the haunted house's courtyard and now are forced to enter the house anyway. Which door will you take.
+
+* [[Front Door]]
+* [[Back Door]]
+
+
+:: Gold Key {"position":"275,1500","size":"100,100"}
+(set: $inventory to it + (array: "GateKey"))
+
+(link: "Pick up key")[
+    <audio autoplay>
+        <source src="https://github.com/Nicky18C/Sounds/raw/refs/heads/main/Collect%20Item%20Sound%20Effect.mp3" type="audio/mpeg">
+    </audio>
+You picked up the key!
+]
+
+* [[Return to Storage Room|Storage Room]]
+
+
+:: Guest Bathroom {"position":"1425,550","size":"100,100"}
+(set: $playerLocation to "Guest Bathroom")
+(set: $monsterLocation to (either: "Pantry", "Guest Bedroom"))
+
+(if: $monsterLocation is $playerLocation)[
+	You hear the sound of something dragging across the floor, and the hairs on your neck stand up. The Ghost is close!
+    (if: $Personality is "Brave")[
+    	You successfully avoided the ghost
+        * [[Hallway|Hallway East]]
+		* [[Guest Bedroom]]
+    ] (else:) [
+    	(goto: "Ghost Death")
+    ]
+](else:)[
+	The bathroom is small, but clean. The mirror reflects a pale version of yourself.
+
+	What will you do next?
+	* [[Hallway|Hallway East]]
+	* [[Guest Bedroom]]
+]
+
+
+:: Guest Bedroom {"position":"1375,750","size":"100,100"}
+(set: $playerLocation to "Guest Bedroom")
+(set: $monsterLocation to (either: "Pantry", "Guest Bedroom"))
+
+(if: $monsterLocation is $playerLocation)[
+	 There is a ghost lurking nearby...
+    (if: $Personality is "Brave")[
+    	You successfully avoided the ghost.
+    ] (else:) [
+    	(goto: "Ghost Death")
+    ]
+](else:)[
+	The room is quiet, with nothing but the soft creak of the old house settling. You feel safe for now.
+
+	Where would you like to go next?
+	* [[Hallway|Hallway East]]
+	* [[Guest Bathroom]]
+]
+
+
+:: Hallway East {"position":"1200,600","size":"100,100"}
+(set: $playerLocation to "Hallway East")
+(set: $monsterLocation to (either: "Pantry", "Guest Bedroom"))
+
+(if: $monsterLocation is $playerLocation)[
+	You hear something moving in the shadows of the hallway. The Ghost is right behind you!
+	* [[Say your prayers|Pre-Ghost Death]]
+](else:)[
+	The hallway seems eerily quiet. You look around, but there’s no sign of the monster.
+
+	Where would you like to go next?
+* [[Guest Bedroom|Guest Bedroom]]
+* [[Guest Bathroom|Guest Bathroom]]
+* [[Closet|Closet]]
+* [[Go to Central Area|Central Area]]
+]
+
+
+:: Hallway North {"position":"925,400","size":"100,100"}
+You're standing in the eerie North Hall of the house. It's cold, and the air feels heavy...
+
+(set: $playerLocation to "Hallway North")
+(set: $monsterLocation to (either: "Pantry", "Guest Bedroom"))
+
+(if: $monsterLocation is $playerLocation)[
+    Suddenly, a loud growl echoes from the shadows. The Ghost has found you!
+    * [[Say your prayers|Pre-Ghost Death]]
+](else:)[
+    Do you:
+    * [[Explore the kitchen|Kitchen]]
+    * [[Go toward stairs|Stairs]]
+    * [[Go to Central Area|Central Area]]
+    
+]
+
+
+:: Hallway South {"position":"925,750","size":"100,100"}
+(set: $playerLocation to "Hallway South")
+(set: $monsterLocation to (either: "Pantry", "Guest Bedroom"))
+
+(if: $monsterLocation is $playerLocation)[
+	Out of nowhere, the Ghost leaps from the shadows! It's too late to escape...
+	* [[Say your prayers|Pre-Ghost Death]]
+](else:)[
+	You're standing in the South Hallway. The air is thick with tension.
+
+	Where do you go?
+	* [[Living Room]]
+	* [[Breakfast Dining]]
+	* [[Go to Central Area|Central Area]]
+]
+
+
+:: Hallway Upstairs {"position":"1750,250","size":"100,200"}
+(set: $playerLocation to "Hallway Upstairs")
+(set: $monsterLocation to (either: 
+  "Theater Room", "Mirror Room", "Portrait Gallery"))
+
+(if: $monsterLocation is $playerLocation)[
+	You arrive at the top of the stairs and feel the tension in the air. The vampire is lurking nearby, waiting for you to make a mistake!
+	* [[Try and run|Pre-Vampire Death]]
+](else:)[
+	You are now on the upper floor, with several rooms to explore. Beware the one who walks in shadows, for beneath the pale gaze lies a thirst that never wanes.
+
+
+	Do you want to enter one of the rooms or go back down?
+	* [[Master Bedroom]]
+	* [[Kids Room]]
+	* [[Study Room]]
+	* [[Attic]]
+	* [[Go downstairs|Stairs]]
+]
+
+
+:: Kids Bathroom {"position":"2075,175","size":"100,100"}
+(set: $playerLocation to "Kids Bathroom")
+(set: $monsterLocation to (either: 
+  "Theater Room", "Mirror Room", "Portrait Gallery"))
+
+(if: $monsterLocation is $playerLocation)[
+	You enter the kids bathroom, and a chill runs down your spine. The monster lurks nearby, waiting for the perfect moment to strike.
+	* [[Try and run|Pre-Vampire Death]]
+](else:)[
+	You stand in the kids bathroom, the walls are decorated with cartoonish murals. What will you do next?
+
+	* [[Kids Room]]
+]
+
+
+:: Kids Room {"position":"2075,300","size":"100,100"}
+(set: $playerLocation to "Kids Room")
+(set: $monsterLocation to (either: 
+  "Theater Room", "Mirror Room", "Portrait Gallery"))
+
+(if: $monsterLocation is $playerLocation)[
+	You walk into the kids room and feel an eerie presence. The Vampire is here, lurking in the shadows, ready to attack!
+	* [[Try and run|Pre-Vampire Death]]
+](else:)[
+	The kids room is brightly colored, with toys scattered around. What will you do next?
+
+	* [[Kids Bathroom]]
+	* [[Mirror Room]]
+    * [[Leave|Hallway Upstairs]]
+]
+
+
+:: Kitchen {"position":"625,625","size":"100,100"}
+(set: $playerLocation to "Kitchen")
+(set: $monsterLocation to (either: "Pantry", "Guest Bedroom"))
+
+(if: $monsterLocation is $playerLocation)[
+	Suddenly, a loud growl echoes from the shadows. The Ghost has found you!  
+	* [[Say your prayers|Pre-Ghost Death]]
+](else:)[
+	You are in the Kitchen.
+
+	What would you like to do?
+	* [[Pantry]]
+	* [[Dining Room]]
+	* [[Breakfast Dining]]
+]
+
+
+:: Living Room {"position":"1125,775","size":"100,100"}
+(set: $playerLocation to "Living Room")
+(set: $monsterLocation to (either: "Pantry", "Guest Bedroom"))
+
+(if: $monsterLocation is $playerLocation)[
+	You enter the living room, but the Ghost is already here! It lunges at you!
+	* [[Say your prayers|Pre-Ghost Death]]
+](else:)[
+	You step into the living room. It’s eerily quiet, and the furniture is covered in dusty sheets.
+
+	Where will you go next?
+	* [[Hallway South]]
+]
+
+
+:: Master Bathroom {"position":"1875,75","size":"100,100"}
+(set: $playerLocation to "Master Bathroom")
+(set: $monsterLocation to (either: 
+  "Theater Room", "Mirror Room", "Portrait Gallery"))
+
+(if: $monsterLocation is $playerLocation)[
+	You step into the Master Bathroom, the door creaks behind you, and you feel a chill as the Vampire lurks nearby!
+	* [[Try and run|Pre-Vampire Death]]
+](else:)[
+	The bathroom is spacious with a luxurious marble tub and sleek mirrors. A faint smell of something foul lingers in the air.
+
+	* [[Master Bedroom]]
+
+]
+
+
+:: Master Bedroom {"position":"1750,75","size":"100,100"}
+(set: $playerLocation to "Master Bedroom")
+(set: $monsterLocation to (either: 
+  "Theater Room", "Mirror Room", "Portrait Gallery"))
+
+(if: $monsterLocation is $playerLocation)[
+	You enter the Master Bedroom, and the air grows cold. Suddenly, you hear footsteps behind you—the Vampire has found you!
+	* [[Try and run|Pre-Vampire Death]]
+](else:)[
+	The room is large and furnished with luxurious antique furniture. A large bed dominates the center of the room, and a chilling portrait hangs above the fireplace.
+
+	Do you want to explore further or go to another room?
+	* [[Portrait Gallery]]
+	* [[Master Bathroom]]
+   	* [[Leave|Hallway Upstairs]]
+]
+
+
+:: Mirror Room {"position":"2075,425","size":"100,100"}
+(set: $playerLocation to "Mirror Room")
+(set: $monsterLocation to (either: 
+  "Theater Room", "Mirror Room", "Portrait Gallery"))
+
+(if: $monsterLocation is $playerLocation)[
+	You enter the mirror room and your reflection seems to move on its own! Suddenly, the Vampire appears in the mirrors and lunges at you!
+	* [[Try and run|Pre-Vampire Death]]
+](else:)[
+	The room is full of mirrors, and you're surrounded by your own reflections. What will you do next?
+
+	* [[Kids Room]]
+]
+
+
+:: Nursery {"position":"450,975","size":"100,100"}
+(set: $playerLocation to "Nursery")
+
+(if: $monsterLocation is $playerLocation)[
+	Suddenly, a low snarl echoes from the shadows. The Zombie has found you!
+	* [[Fight back|Pre-Zombie Death]]
+](else:)[
+	The walls are lined with rotting wooden shelves, each crowded with dust-covered porcelain dolls. Their eyes — some glossy, some gouged out — all seem to follow you. One doll neatly placed on a stool begins to giggle. But its mouth doesn’t move.
+
+	What would you like to do?
+    * [[Pick up the doll|Creepy Doll]]
+ 	* [[Basement]]
+]
+
+
+:: Pantry {"position":"425,625","size":"100,100"}
+(set: $playerLocation to "Pantry")
+(set: $monsterLocation to (either: "Pantry", "Guest Bedroom"))
+
+(if: $monsterLocation is $playerLocation)[
+	A chilling growl rumbles behind the shelves... The Ghost is here!
+    (if: $Personality is "Brave")[
+    	You successfully avoided the ghost
+        * [[Kitchen]]
+    ] (else:) [
+    	(goto: "Ghost Death")
+    ]
+](else:)[
+	You're in the Pantry. It's cramped and smells like something expired decades ago.
+
+	Where do you go?
+	* [[Kitchen]]
+]
+
+
+:: Portrait Gallery {"position":"1650,75","size":"100,100"}
+(set: $playerLocation to "Portrait Gallery")
+(set: $monsterLocation to (either: 
+  "Theater Room", "Mirror Room", "Portrait Gallery"))
+
+(if: $monsterLocation is $playerLocation)[
+	You enter the Portrait Gallery, where the eyes of every painting seem to follow you. Suddenly, you hear breathing from behind the frames—the Vampire has found you!
+	* [[Try and run|Pre-Vampire Death]]
+](else:)[
+	The gallery is filled with old portraits, each more eerie than the last. You feel like you're being watched.
+
+	Do you want to continue exploring or head to another room?
+	* [[Master Bedroom]]
+]
+
+
+:: Pre-Ghost Death {"position":"1075,125","size":"100,100"}
+(goto: "Ghost Death")
+
+
+:: Pre-Vampire Death {"position":"1450,150","size":"100,100"}
+(goto: "Vampire Death")
+
+
+:: Pre-Zombie Death {"position":"1275,125","size":"100,100"}
+(if: $Personality is "Sneaky") [
+	You successfully fought it off for now.
+    [[Nursery]]
+] (else:) [
+	(goto: "Zombie Death")
+]
+
+
+
+:: Quit {"position":"25,200","size":"100,100"}
+You have quit the game
+
+
+:: Seance Room {"position":"2125,775","size":"100,100"}
+(set: $playerLocation to "Seance Room")
+(set: $monsterLocation to (either: 
+  "Theater Room", "Mirror Room", "Portrait Gallery"))
+
+(if: $monsterLocation is $playerLocation)[
+	You open the door, and as you step in, the vampire is waiting for you, its claws outstretched!
+	*[[Try and run|Pre-Vampire Death]] 
+](else-if: $inventory contains "CellarKey")[
+	Burned-out candles form a ring on the floor, their wax pooled like frozen tears. A fifth candle, still flickering, casts shadows that don’t quite match your movement. The walls are scrawled with chalk symbols, half-erased by time or claw marks.
+	* [[Attic]]
+    * [[Theater Room]]
+](else:)[
+	Burned-out candles form a ring on the floor, their wax pooled like frozen tears. A fifth candle, still flickering, casts shadows that don’t quite match your movement. The walls are scrawled with chalk symbols, half-erased by time or claw marks.
+    
+	You see a corroded green key lying on the blood splattered floor. A force compels you to pick up the ''bronze'' key.
+	* [[Pick it Up|Bronze Key]]
+]
+
+
+:: Silver Key {"position":"1825,800","size":"100,100"}
+(set: $inventory to it + (array: "BasementKey"))
+
+(link: "Pick up key")[
+    <audio autoplay>
+        <source src="https://github.com/Nicky18C/Sounds/raw/refs/heads/main/Collect%20Item%20Sound%20Effect.mp3" type="audio/mpeg">
+    </audio>
+You picked up the key!
+]
+
+* [[The Archives]]
+
+
+:: Stairs {"position":"1225,300","size":"100,100"}
+(set: $playerLocation to "Stairs")
+(set: $monsterLocation to (either: 
+  "Theater Room", "Mirror Room", "Master Bedroom"))
+
+(if: $monsterLocation is $playerLocation)[
+	You hear a creaking sound, and the shadows seem to move in your peripheral vision. The monster is stalking you on the stairs!
+	* [[Say your prayers|Pre-Ghost Death]]
+](else:)[
+	The stairs are narrow and steep, leading up to a darker area. You feel a sense of foreboding.
+
+	Do you want to go up or head back?
+	* [[Go upstairs|Hallway Upstairs]]
+	* [[Hallway|Hallway North]]
+]
+
+
+:: Storage Room {"position":"275,1150","size":"100,100"}
+(set: $playerLocation to "Storage Room")
+
+
+(if: $monsterLocation is $playerLocation)[
+	Suddenly, a low snarl echoes from the shadows. The Zombie has found you!
+	* [[Fight back|Pre-Zombie Death]]
+](else:)[
+	You see a rusted, //gold// cage with a broken, bloodstained lock. You can tell something //was// inside from the bits of flesh that lie on the floor...
+
+	What would you like to do?
+	* [[Inspect the cage|The Cage]]
+	* [[Return to the Basement|Basement]]
+]
+
+
+:: Study Closet {"position":"1675,650","size":"100,100"}
+(set: $playerLocation to "Study Closet")
+(set: $monsterLocation to (either: 
+  "Theater Room", "Mirror Room", "Portrait Gallery"))
+
+(if: $monsterLocation is $playerLocation)[
+	You open the closet door, only to be met by a cold, monstrous presence lurking inside. It was waiting for you.
+	* [[Try and run|Pre-Vampire Death]]
+](else:)[
+	You step into the study closet, filled with old coats and storage boxes. A faint smell of mildew hangs in the air. It’s eerily quiet.
+
+	What will you do next?
+	* [[Study Room]]
+]
+
+
+:: Study Room {"position":"1750,500","size":"100,100"}
+(set: $playerLocation to "Study Room")
+(set: $monsterLocation to (either: 
+  "Theater Room", "Mirror Room", "Portrait Gallery"))
+
+(if: $monsterLocation is $playerLocation)[
+	You enter the study, and suddenly, you feel the temperature drop. The vampire is here, waiting in the shadows!
+	* [[Try and run|Pre-Vampire Death]]
+](elseif: not($inventory contains "BasementKey"))[
+	You step into the study room, filled with dusty books and old furniture. It's quiet, almost too quiet. You feel like you’re being watched. Once the paranoia settles, //you hear the slight jingle of keys.//]
+(else:)[
+You step into the study room, filled with dusty books and old furniture. It's quiet, almost too quiet. You feel like you’re being watched.
+]
+    
+		What will you do next?
+	* [[Study Closet]]
+	* [[The Archives]]
+	* [[Leave|Hallway Upstairs]]
+
+
+:: The Archives {"position":"1825,650","size":"100,100"}
+(set: $playerLocation to "The Archives")
+(set: $monsterLocation to (either: 
+  "Theater Room", "Mirror Room", "Portrait Gallery"))
+
+(if: $monsterLocation is $playerLocation)[
+	You step into the dimly lit archives and are immediately surrounded by stacks of dusty old books. 
+	The vampire, hidden in the shadows, pounces on you.
+    * [[Try and run|Pre-Vampire Death]]
+]
+(else-if: $inventory contains "BasementKey")[
+	You walk into the archives, the scent of old paper filling the air. The shelves seem to go on forever.
+	* [[Study Room]]
+]
+(else:)[
+	You walk into the archives, the scent of old paper filling the air. The shelves seem to go on forever. You see a key hanging on the wall. A force compels you to pick up the Silver key.
+	* [[Pick it Up|Silver Key]]
+    
+]
+
+
+:: The Cage {"position":"275,1325","size":"100,100"}
+(set: $playerLocation to "The Cage")
+
+(if: $monsterLocation is $playerLocation)[
+	Suddenly, a low snarl echoes from the shadows. The Zombie has found you!
+	* [[Fight back|Pre-Zombie Death]]
+](elseif: not($inventory contains "GateKey"))[
+	You see a sparkling gold key. Your hope shimmers almost as brightly as the key.
+   	* [[Pick it Up|Gold Key]]
+](else:)[
+* [[Storage Room]]
+]
+
+
+:: Theater Room {"position":"2200,625","size":"100,100"}
+(set: $playerLocation to "Theater Room")
+(set: $monsterLocation to (either: 
+  "Theater Room", "Mirror Room", "Portrait Gallery"))
+
+(if: $monsterLocation is $playerLocation)[
+	You step into the Theater Room, and the vampire is already there, lurking in the shadows!
+	* [[Try and run|Pre-Vampire Death]]
+](else:)[
+	The Theater Room looks eerie, with a giant screen and old movie posters. What will you do?
+
+
+* [[Attic]]
+* [[Seance Room]]
+]
+
+
+:: Vampire Death {"position":"1450,0","size":"100,100"}
+The vampire sinks its pearly, razor sharp teeth into your neck, quenching its hunger...
+
+* [[Restart|Beginning]]
+
+<img src="https://cdn.mos.cms.futurecdn.net/5wtDSDqhVpu2b77sycJ2bC-1200-80.jpg" />
+
+
+:: Zombie Death {"position":"1275,0","size":"100,100"}
+The zombie bites off your arm in a single motion...
+
+* [[Restart|Beginning]]
+
+
+<img src="https://marvel-b1-cdn.bc0a.com/f00000000299671/www.columbuszoo.org/sites/default/files/inline-images/Zombiezi%20Bay%2005476%20-%20Amanda%20Carberry%2C%20Columbus%20Zoo%20and%20Aquarium.jpg" />
