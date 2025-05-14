@@ -43,3 +43,5 @@ This project was created by:
 - Item collection and room-based exploration
 - Dynamic text based on player actions
 - Replayable with multiple outcomes
+
+# Thanks for checking out our project. Happy haunting! 👻
