@@ -17,13 +17,13 @@ This project was built collaboratively by our team as part of a creative coding 
 
 ## 📁 Project Structure
 
-- `Haunted_House_Final.twee` — Main story script written in Twee format.
+- `The_Final_Final.twee` — Main story script written in Twee format.
 - `README.md` — Project documentation
 
 ## 🚀 How to Play
 
 1. Download [Twine](https://twinery.org/) or use the [online Twine editor](https://twinery.org/2/).
-2. Import the `Haunted_House_Final.twee` file.
+2. Import the `The_Final_Final.twee` file.
 3. Choose your story format (Harlowe or SugarCube) if prompted.
 4. Play and explore the haunted house!
 
